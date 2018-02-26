@@ -31,7 +31,7 @@ if ( !!process && process.execPath ) {
     iAmOnNode = true;
 }
 if (iAmOnNode) {
-  Canvas = require('canvas');
+  Canvas = require('canvas-prebuilt');
   Image = Canvas.Image;
   fs = require('fs');
 }
