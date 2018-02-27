@@ -27,8 +27,12 @@ var iAmOnNode = false;
 var Canvas;
 var Image;
 var fs;
-if ( !!process && process.execPath ) {
-    iAmOnNode = true;
+try {
+	if ( !!process && process.execPath ) {
+		iAmOnNode = true;
+	}
+} catch (error) {
+	iAmOnNode = false;
 }
 if (iAmOnNode) {
   Canvas = require('canvas-prebuilt');
@@ -108,7 +112,7 @@ ColorThief.prototype.getColor = function(sourceImage, quality, allowWhite) {
       quality = undefined;
     }
   
-    var palette       = this.getPalette(sourceImage, 5, quality, allowWhite);
+    var palette       = this.getPalette(sourceImage, 4, quality, allowWhite);
     var dominantColor = palette[0];
     return dominantColor;
 };
@@ -134,7 +138,7 @@ ColorThief.prototype.getColor = function(sourceImage, quality, allowWhite) {
 ColorThief.prototype.getPalette = function(sourceImage, colorCount, quality, allowWhite) {
 
     if (typeof colorCount === 'undefined') {
-        colorCount = 10;
+        colorCount = 4;
     };
     if (typeof quality === 'undefined') {
         quality = 10;
